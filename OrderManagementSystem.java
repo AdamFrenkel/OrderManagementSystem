@@ -15,7 +15,7 @@ private Map<Service, ServiceProvider>  mapOfServicesToTheListOfServiceProviders;
 
 
  /**
- * Creates a new Warehouse instance and calls the other constructor
+ * Creates a new Warehouse instance ******** and calls the other constructor
  *
  * @param products
  * @param defaultProductStockLevel
@@ -26,6 +26,7 @@ Set<ServiceProvider> serviceProviders) {
  	this.productSet = products;
  	this.productStockLevel = defaultProductStockLevel;
  	this.serviceProviderSet = serviceProviders;
+ 	//Still need to call other one!!!!!
 
 
 
@@ -48,7 +49,7 @@ make up the services arm of the business
  */
  public OrderManagementSystem(Set<Product> products, int defaultProductStockLevel,
 Set<ServiceProvider> serviceProviders, Warehouse warehouse) {
-	//initialize the variables       //not sue exactly what I'm doing at this step
+	//initialize the variables       //not sure if what I'm doing at this step is correct
  	this.productSet = products;
  	this.productStockLevel = defaultProductStockLevel;
  	this.serviceProviderSet = serviceProviders;
@@ -65,12 +66,15 @@ Set<ServiceProvider> serviceProviders, Warehouse warehouse) {
 		this.setOfServicesProvidedByTheServiceProviders.addAll(currentServiceProvider.getServices());
 	}
 
-	//3) create map of services to the List of service providers
-
-
-
-
-
+	//3) create map of services to the List(set) of service providers
+	Set<Service> setOfServicesFromCurrentServiceProvider;
+	for(ServiceProvider currentServiceProvider : serviceProviderSet){
+		setOfServicesFromCurrentServiceProvider.addAll(currentServiceProvider.getServices());
+		for(currentService : setOfServicesFromCurrentServiceProvider){
+			mapOfServicesToTheListOfServiceProviders.put(currentService, currentServiceProvider);
+		}	
+		setOfServicesFromCurrentServiceProvider.clear();
+	}
 
 
  }
@@ -169,3 +173,4 @@ Set<ServiceProvider> serviceProviders, Warehouse warehouse) {
 
 
 }
+
